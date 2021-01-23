@@ -1,14 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Francois+One&display=swap');
+
 * {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
+    font-family: 'Francois One', sans-serif;
+}
+
+:root {
+    --title-font-size: 72px;
+    
+    --show-background-color: #87B6A7;
+    --show-font-color: #D9594C;
+    
+    --music-background-color: #C3423F;
+    --music-font-color: #EDAE49;
+    
+    --landing-background-color: #DDA448;
+    --landing-font-color: #BB342F;
+}
+
+html {
+    scroll-snap-type: y mandatory;
+    scroll-snap-points-y: repeat(100vh);
+    scroll-snap-type: y mandatory;
 }
 
 /***************************
   SECTION STYLING
 ***************************/
-.section {
+section {
     width: 100vw;
     height: 100vh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always
+}
+
+section:not(#landing) {
+    padding-top: 4rem;
+}
+
+section h1 {
+    font-size: var(--title-font-size);
+}
+
+#landing {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--landing-background-color);
+    color: var(--landing-font-color);
+}
+
+#landing h1 {
+    font-size: calc(var(--title-font-size) * 1.25);
+}
+
+#landing em {
+    color: #D62839;
+}
+
+
+#shows-section {
+    background-color: var(--show-background-color);
+    color: var(--show-font-color);
+}
+
+#music-section {
+    background-color: var(--music-background-color);
+    color: var(--music-font-color);
+}
+
+.section-title {
+    margin-left: 5rem;
+    padding-bottom: 1rem;
 }
 
 
@@ -46,8 +112,14 @@
     width:100%; 
     height:100%;
     display:inline-block;
-    background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.75));
-  }
+    background: linear-gradient(#00000025, #00000075);
+}
+
+.post,
+.image-gradient:after,
+.post img {
+    border-radius: 10px;
+}
 
 .post-uploader {
     z-index:2;
