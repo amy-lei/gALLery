@@ -2,6 +2,14 @@ window.addEventListener('scroll', () => {
     localStorage.setItem('scrollY',window.scrollY);
 }, false);
 
+window.addEventListener('keyup', () => {
+    if (document.getElementById('music-link-input').value.includes('.spotify')) {
+        showTags()
+    } else {
+        hideTags()
+    }
+});
+
 window.addEventListener('load', () => {
     const y = localStorage.getItem('scrollY');
     if (y) {
@@ -26,6 +34,14 @@ const showUsername = () => {
     document.getElementById('user').style.display = 'block';
 }
 
+// Toggle tags field
+const hideTags = () => {
+    document.getElementById('body-tags').style.display = 'none';
+}
+const showTags = () => {
+    document.getElementById('body-tags').style.display = 'block';
+}
+
 // Toggle between which form content to show
 const showFormBody = (type) => {
     const showForm = document.getElementById('body-shows');
@@ -35,6 +51,7 @@ const showFormBody = (type) => {
         case 'shows':
             showForm.style.display = 'block';
             musicForm.style.display = 'none';
+            showTags()
             break;
         case 'music':
             showForm.style.display = 'none';
@@ -50,20 +67,21 @@ const addPost = async () => {
     // Determine the type post being added 
     const type = document.getElementById('shows-radio').checked ? 'shows' : 'music';
     const username = document.getElementById('username-input').value;
+    const tags = document.getElementById('tag-input').value;
 
     if (type === 'shows') {
-        await addShow(username);
+        await addShow(username, tags);
     } else if (type === 'music') {
-        await addMusic(username);
+        await addMusic(username, tags);
     };
 
     closeForm();
 }
 
-const addShow = async (username) => {
+const addShow = async (username, tags) => {
     const title = document.getElementById('title-input').value;
     const link = document.getElementById('show-link-input').value;
-    const body = { username, title, link };
+    const body = { username, title, link, tags};
     
     // Send request
     try {
@@ -78,9 +96,9 @@ const addShow = async (username) => {
     }
 };
 
-const addMusic = async (username) => {
+const addMusic = async (username, tags) => {
     const link = document.getElementById('music-link-input').value;
-    const body = { username, link };
+    const body = { username, link, tags};
     
     // Send request
     try {

@@ -25,7 +25,8 @@ def add_show():
         username = body.get('username', '')
         title = body.get('title', '')
         link = body.get('link', '')
-        print(insert_show(username, title, link))
+        tags = body.get('tags', '')
+        print(insert_show(username, title, link, tags))
         return jsonify(body), 201
     elif request.method == 'GET':
         return jsonify({'all_shows': []}), 200
@@ -36,7 +37,8 @@ def add_music():
         body = request.json
         username = body.get('username', '')
         link = body.get('link', '')
-        print(insert_music(username, link))
+        tags = body.get('tags', '')
+        print(insert_music(username, link, tags))
         return jsonify(body), 201
     elif request.method == 'GET':
         return jsonify({'all_music': []}), 200
