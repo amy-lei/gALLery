@@ -1,5 +1,4 @@
 window.addEventListener('scroll', () => {
-    console.log(window.scrollY);
     localStorage.setItem('scrollY',window.scrollY);
 }, false);
 
@@ -17,5 +16,7 @@ const test = (type) => {
 
 const closeForm = (type) => {
     document.getElementById(`add-${type}-container`).style.opacity = 0;
-    document.getElementById(`add-${type}-container`).style.visibility = "hidden";
+    setTimeout(() => {
+        document.getElementById(`add-${type}-container`).style.visibility = "hidden";
+    }, 3000);
 }

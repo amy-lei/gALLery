@@ -15,12 +15,16 @@
 
 
 {% macro carousel(posts=[]) %}
+<div class="posts">
     {% for post in posts %}
         <div class="post">
-            <p>{{ post.username }}</p>
-            <img src="{{ post.image }}"/>
+            <p class="post-uploader">{{ post.username }}</p>
+            <div class="image-gradient">
+                <img src="{{ post.link }}"/>
+            </div>
         </div>
     {% endfor %}
+</div>
 {% endmacro %}
 
 
