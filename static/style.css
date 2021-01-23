@@ -189,6 +189,35 @@ section h1 {
     height: 100%;
 }
 
+.post-info {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background-color: rgba(0,0,0,0.75);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 3rem;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.post:hover .post-info {
+    opacity: 1;
+}
+
+.post-info > h3 {
+    margin-bottom: 0.25rem;
+}
+
+.tags > .tag {
+    display: inline;
+    margin: 0 2px;
+    opacity: 0.5;
+}
+
 .image-gradient {
     position: relative;
     height: 100%;
