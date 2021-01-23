@@ -18,6 +18,15 @@
             {{ carousel(items) }}
         </section>
     {% endfor %}
+
+    <section id="saved">
+        <h1 class="section-title">Before you go...</h1>
+        <p> Check the posts you have saved!</p>
+        <div id="saved-posts" class="posts">
+            <p>No posts were saved :( Look again?</p>
+        </div>
+    </section>
+
     {% include "add-form.html" %}
     <button onclick="openForm()" class="open-btn"> 
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-plus" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -33,12 +42,25 @@
 {% macro carousel(posts=[]) %}
 <div class="posts">
     {% for post in posts %}
-        <div class="post">
+        <button class="post" onclick="savePost({{ post | safe }})">
             <p class="post-uploader">{{ post.username }}</p>
+            <div class="post-info">
+                {% if post.title %}
+                    <h3>{{ post.title }}</h3>
+                {% endif %}
+                {% if post.tags %}
+                    <div class="tags">
+                        {% for tag in post.tags %}
+                        <p class="tag">#{{ tag }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+            </div>
             <div class="image-gradient">
                 <img src="{{ post.link }}"/>
             </div>
-        </div>
+        </button>
     {% endfor %}
 </div>
 {% endmacro %}

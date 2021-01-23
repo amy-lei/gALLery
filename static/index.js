@@ -61,6 +61,7 @@ const showFormBody = (type) => {
     }
 }
 
+// Send new post to the backend
 const addPost = async () => {
     // Determine the type post being added 
     const type = document.getElementById('shows-radio').checked ? 'shows' : 'music';
@@ -116,3 +117,37 @@ const addMusic = async (username, tags) => {
         console.log(err);
     }
 };
+
+// Create DOM element for posts clicked on
+const savePost = (post) => {
+    const container = document.getElementById('saved-posts');
+    
+    const firstChild = container.firstElementChild;
+    
+    // If this is the first post, get rid of the filler text
+    if (firstChild.tagName === 'P') {
+        firstChild.remove();
+    }
+
+    // Create the new post
+    const newPost = document.createElement('DIV');
+    newPost.classList.add('post');
+    newPost.classList.add('saved');
+    
+    const username = document.createElement('P');
+    username.classList.add('post-uploader');
+    username.innerText = post.username;
+
+    const imageContainer = document.createElement('DIV');
+    imageContainer.classList.add('image-gradient');
+    
+    const image = document.createElement('IMG');
+    image.setAttribute('src', post.link);
+    
+    imageContainer.appendChild(image);
+    newPost.appendChild(username);
+    newPost.appendChild(imageContainer);
+
+    // Add to list of saved posts
+    container.appendChild(newPost);
+}
