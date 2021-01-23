@@ -24,6 +24,15 @@ def add_show():
         return redirect(url_for('index'))
     return render_template('add_show.html')
 
+@app.route('/add-music', methods=['POST', 'GET'])
+def add_music():
+    if request.method == 'POST':
+        u = request.form['username']
+        l = request.form['link']
+        print(insert_music(u,l))
+        return redirect(url_for('index'))
+    return render_template('add_music.html')
+
 @app.route('/clear-shows')
 def clear_shows():
     print('clearing shows...')
