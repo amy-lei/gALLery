@@ -11,12 +11,14 @@ sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=CLIENT_ID,
 YOUTUBE_API_SERVICE_NAME = 'youtube'
 YOUTUBE_API_VERSION = 'v3'
 
-def insert_show(username, title, link, client=MongoClient(MONGO_URI)):
+def insert_show(username, title, link, tags, client=MongoClient(MONGO_URI)):
+    tags = [item.strip() for item in tags.split(',')]
     show = client.gallery.show
     show_info = {
         'username' : username,
         'title' : title,
-        'link' : link
+        'link' : link,
+        'tags' : tags
     }
     show.insert_one(show_info)
     return 'successfully inserted ' + str(show_info) + ' into db'
@@ -25,6 +27,7 @@ def insert_music(username, vid_link, tags=None, client=MongoClient(MONGO_URI)):
     if tags is None:
         thumbnail, title, tags = get_vid_info(get_vid_id(vid_link))
     else:
+        tags = [item.strip() for item in tags.split(',')]
         thumbnail, title = get_track_info(vid_link)
     music = client.gallery.music
     music_info = {

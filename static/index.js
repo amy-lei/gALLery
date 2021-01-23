@@ -66,20 +66,21 @@ const addPost = async () => {
     // Determine the type post being added 
     const type = document.getElementById('shows-radio').checked ? 'shows' : 'music';
     const username = document.getElementById('username-input').value;
+    const tags = document.getElementById('tag-input').value;
 
     if (type === 'shows') {
-        await addShow(username);
+        await addShow(username, tags);
     } else if (type === 'music') {
-        await addMusic(username);
+        await addMusic(username, tags);
     };
 
     closeForm();
 }
 
-const addShow = async (username) => {
+const addShow = async (username, tags) => {
     const title = document.getElementById('title-input').value;
     const link = document.getElementById('show-link-input').value;
-    const body = { username, title, link };
+    const body = { username, title, link, tags};
     
     // Send request
     try {
@@ -94,9 +95,9 @@ const addShow = async (username) => {
     }
 };
 
-const addMusic = async (username) => {
+const addMusic = async (username, tags) => {
     const link = document.getElementById('music-link-input').value;
-    const body = { username, link };
+    const body = { username, link, tags};
     
     // Send request
     try {
