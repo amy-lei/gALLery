@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %} gALLery {% endblock %}
+
+{% block content %}
+    {% for type, items in posts.items() %}
+        {{ form(type) }}
+        <div class="section {{ type }}">
+            <h1>{{ type }}</h1>
+            {{ carousel(items) }}
+            <button onclick="test('{{type}}')"> Click me</button>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+
+{% macro carousel(posts=[]) %}
+    {% for post in posts %}
+        <div class="post">
+            <p>{{ post.uploader }}</p>
+            <img src="{{ post.image }}"/>
+        </div>
+    {% endfor %}
+{% endmacro %}
+
+
+{% macro form(type) %}
+<div id="add-{{ type }}-container" class="add-container">
+    <form class="add-form">
+        {% if type == "shows" %}
+            <label> Image URL: </label>
+            <input type="text"/>
+            {% endif %}
+        <button onclick="close('{{ type }}')"> Close </button>
+    </form>
+</div>
+{% endmacro %}
