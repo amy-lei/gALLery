@@ -34,7 +34,8 @@ section {
     width: 100vw;
     height: 100vh;
     scroll-snap-align: start;
-    scroll-snap-stop: always
+    scroll-snap-stop: always;
+    position: relative;
 }
 
 section:not(#landing) {
@@ -153,24 +154,52 @@ section h1 {
 /***************************
   FORM STYLING
 ***************************/
+.open-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;  
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
 .add-container {
     display: none;
     justify-content: center;
     align-items: center;
     position: fixed;
+    top: 0;
+    left: 0;
     z-index: 1;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0,0,0,0.5);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.25s ease-in-out; 
 }
 
 .add-form {
-    width: 70%;
+    position: absolute;
+    width: 40%;
     height: 60%;
+    bottom: 70px;
+    right: 45px;
     background-color: white;
+    border-radius: 10px 10px 0 10px;
+    padding: 2.5rem;
+}
+
+.add-form::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-left: -5px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: white transparent transparent transparent;
+}
+
+#user {
+    display: none;
 }
 
 /***************************

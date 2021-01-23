@@ -13,20 +13,20 @@
     </section>
     
     {% for type, items in posts.items() %}
-        {{ form(type) }}
         <section id="{{ type }}-section">
             <h1 class="section-title">{{ type.upper() }}</h1>
             {{ carousel(items) }}
-            <button onclick="test('{{type}}')"> 
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-plus" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                    <circle cx="12" cy="12" r="9" />
-                    <line x1="9" y1="12" x2="15" y2="12" />
-                    <line x1="12" y1="9" x2="12" y2="15" />
-                </svg>
-            </button>
         </section>
     {% endfor %}
+    {{ form() }}
+    <button onclick="openForm()" class="open-btn"> 
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-plus" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <circle cx="12" cy="12" r="9" />
+            <line x1="9" y1="12" x2="15" y2="12" />
+            <line x1="12" y1="9" x2="12" y2="15" />
+        </svg>
+    </button>
 {% endblock %}
 
 
@@ -44,14 +44,21 @@
 {% endmacro %}
 
 
-{% macro form(type) %}
-<div id="add-{{ type }}-container" class="add-container">
-    <form class="add-form">
-        {% if type == "shows" %}
-            <label> Image URL: </label>
-            <input type="text"/>
-            {% endif %}
-        <button onclick="close('{{ type }}')"> Close </button>
-    </form>
+{% macro form() %}
+<div id="add-container" class="add-container">
+    <div class="add-form">
+        <input type="radio" id="anonymous" name="mode" value="anonymous" onclick="hideUsername()" checked> Anonymous <br>
+        <input type="radio" id="anonymous" name="mode" value="public" onclick="showUsername()"> Add username <br>
+        <div id='user'>
+            <label for="username">Username:</label><br>
+            <input type="text" id="show-username" name="username"><br>
+        </div>
+        <label for="title">Title:</label><br>
+        <input type="text" id="show-title" name="title"><br>
+        <label for="link">Image Link:</label><br>
+        <input type="text" id="show-link" name="link">
+        <button type="submit" onclick="addShow()">Submit</button>
+        <button onclick="closeForm()"> Close </button>
+    </div>
 </div>
 {% endmacro %}
