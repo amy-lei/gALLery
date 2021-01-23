@@ -27,4 +27,11 @@ def add_show():
 @app.route('/clear-shows')
 def clear_shows():
     print('clearing shows...')
-    return 'cleared shows.'
+    r = client.gallery.show.delete_many({})
+    return 'cleared ' + str(r.deleted_count) + ' shows.'
+
+@app.route('/clear-moviess')
+def clear_movies():
+    print('clearing music ...')
+    r = client.gallery.music.delete_many({})
+    return 'cleared ' + str(r.deleted_count) + ' music.'
