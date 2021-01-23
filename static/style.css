@@ -29,6 +29,7 @@ html {
 /***************************
   SECTION STYLING
 ***************************/
+
 section {
     width: 100vw;
     height: 100vh;
@@ -55,6 +56,22 @@ section h1 {
 
 #landing h1 {
     font-size: calc(var(--title-font-size) * 1.25);
+}
+
+#landing #right-title,
+#landing #left-title {
+    opacity: 0;
+    display: inline-block;
+}
+
+#landing #left-title {
+    margin-right: -1rem;
+    animation: slide-right 0.75s ease-in-out 0.75s forwards;
+}
+
+#landing #right-title {
+    margin-left: -1rem;
+    animation: slide-left 0.75s ease-in-out 0.75s forwards;
 }
 
 #landing em {
@@ -111,7 +128,7 @@ section h1 {
     width:100%; 
     height:100%;
     display:inline-block;
-    background: linear-gradient(#00000025, #00000075);
+    background: linear-gradient(#fffbd525, #b20a2c25);
 }
 
 .post,
@@ -147,4 +164,30 @@ section h1 {
     width: 70%;
     height: 60%;
     background-color: white;
+}
+
+/***************************
+  ANIMATIONS
+***************************/
+
+@keyframes slide-right {
+    0% {
+       opacity: 0;
+       transform: translateX(-15px); 
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-left {
+    0% {
+       opacity: 0;
+       transform: translateX(15px); 
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
