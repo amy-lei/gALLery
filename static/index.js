@@ -2,6 +2,14 @@ window.addEventListener('scroll', () => {
     localStorage.setItem('scrollY',window.scrollY);
 }, false);
 
+window.addEventListener('keyup', () => {
+    if (document.getElementById('music-link-input').value.includes('.spotify')) {
+        showTags()
+    } else {
+        hideTags()
+    }
+});
+
 window.addEventListener('load', () => {
     const y = localStorage.getItem('scrollY');
     if (y) {
@@ -26,6 +34,14 @@ const showUsername = () => {
     document.getElementById('user').style.display = 'block';
 }
 
+// Toggle tags field
+const hideTags = () => {
+    document.getElementById('body-tags').style.display = 'none';
+}
+const showTags = () => {
+    document.getElementById('body-tags').style.display = 'block';
+}
+
 // Toggle between which form content to show
 const showFormBody = (type) => {
     const showForm = document.getElementById('body-shows');
@@ -35,6 +51,7 @@ const showFormBody = (type) => {
         case 'shows':
             showForm.style.display = 'block';
             musicForm.style.display = 'none';
+            showTags()
             break;
         case 'music':
             showForm.style.display = 'none';
