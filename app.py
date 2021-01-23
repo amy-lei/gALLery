@@ -48,7 +48,7 @@ DATA = {
 
 @app.route('/')
 def index():
-    return 'Hello World!'
+    return render_template('gallery.html', posts=DATA)
 
 @app.route('/add-show', methods=['POST', 'GET'])
 def add_show():
