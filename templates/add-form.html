@@ -32,18 +32,22 @@
                 <input type="text" id="title-input" name="title"><br>
                 
                 <label for="link">Image Link:</label><br>
-                <input type="text" id="show-link-input" name="link">
+                <input type="text" id="show-link-input" name="link"><br>
+
+                <label for="tags">Show Tags:</label><br>
+                <input type="text" id="show-tag-input" name="tag">
             </div>
             
             <div id="body-music" class="form-body">
                 <label for="link">Video Link:</label><br>
                 <input type="text" id="music-link-input" name="link">
+
+                <div id="body-music-tags" class="form-body">
+                    <label for="tags">Music Tags:</label><br>
+                    <input type="text" id="music-tag-input" name="tag">
+                </div>
             </div>
 
-            <div id="body-tags" class="form-body">
-                <label for="tags">Tags:</label><br>
-                <input type="text" id="tag-input" name="tag">
-            </div>
         </div>
         <button type="submit" onclick="addPost()">Submit</button>
         <button onclick="closeForm()"> Close </button>

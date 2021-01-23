@@ -36,10 +36,10 @@ const showUsername = () => {
 
 // Toggle tags field
 const hideTags = () => {
-    document.getElementById('body-tags').style.display = 'none';
+    document.getElementById('body-music-tags').style.display = 'none';
 }
 const showTags = () => {
-    document.getElementById('body-tags').style.display = 'block';
+    document.getElementById('body-music-tags').style.display = 'block';
 }
 
 // Toggle between which form content to show
@@ -51,7 +51,6 @@ const showFormBody = (type) => {
         case 'shows':
             showForm.style.display = 'block';
             musicForm.style.display = 'none';
-            showTags()
             break;
         case 'music':
             showForm.style.display = 'none';
@@ -66,12 +65,17 @@ const addPost = async () => {
     // Determine the type post being added 
     const type = document.getElementById('shows-radio').checked ? 'shows' : 'music';
     const username = document.getElementById('username-input').value;
-    const tags = document.getElementById('tag-input').value;
 
     if (type === 'shows') {
+        const tags = document.getElementById('show-tag-input').value;
         await addShow(username, tags);
     } else if (type === 'music') {
-        await addMusic(username, tags);
+        const tags = document.getElementById('music-tag-input').value;
+        if (document.getElementById('music-link-input').value.includes('.spotify')){
+            await addMusic(username, tags);
+        } else {
+            await addMusic(username, null);
+        }
     };
 
     closeForm();
@@ -98,6 +102,7 @@ const addShow = async (username, tags) => {
 const addMusic = async (username, tags) => {
     const link = document.getElementById('music-link-input').value;
     const body = { username, link, tags};
+    console.log(tags)
     
     // Send request
     try {
