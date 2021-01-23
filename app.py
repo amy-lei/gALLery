@@ -15,3 +15,8 @@ def add_show():
         print(insert_show(u,t,l))
         return redirect(url_for('index'))
     return render_template('add_show.html')
+
+@app.route('/clear-shows')
+def clear_shows():
+    print('clearing shows...')
+    return 'cleared shows.'
