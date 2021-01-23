@@ -19,6 +19,9 @@
     
     --landing-background-color: #DDA448;
     --landing-font-color: #BB342F;
+
+    --saved-background-color: #616163;
+    --saved-font-color: #F7C1BB;
 }
 
 html {
@@ -31,6 +34,21 @@ h1,
 h2,
 h3 {
     font-family: 'Francois One', sans-serif !important;
+}
+
+button {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow: visible;
+    outline: none;
+
+    background: transparent;
+
+    /* inherit font & color from ancestor */
+    color: inherit;
+    font: inherit;
 }
 
 /***************************
@@ -106,6 +124,11 @@ section h1 {
     color: var(--music-font-color);
 }
 
+#saved {
+    background-color: var(--saved-background-color);
+    color: var(--saved-font-color);
+}
+
 .section-title {
     margin-left: 5rem;
     padding-bottom: 1rem;
@@ -123,10 +146,43 @@ section h1 {
 }
 
 .post {
+    flex-shrink: 0;
+    display: inline-block;
     position: relative;
     height: 100%;
+    width: fit-content;
     margin: 0 0.5rem;
     color: white;
+    transition: all 0.1s ease-in-out;
+    overflow: hidden;
+}
+
+.post:not(.saved) {
+    cursor: pointer;
+}
+
+.post::after {
+    display: none;
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.3);
+    
+    width: 100px;
+    height: 100px;
+    margin-top: -50px;
+    margin-left: -50px;
+    
+    /* Center the ripple */
+    top: 50%;
+    left: 50%;
+  
+    animation: ripple 1s;
+    opacity: 0;
+}
+
+.post:focus:not(:active)::after {
+    display: block;
 }
 
 .post img {
@@ -136,6 +192,7 @@ section h1 {
 .image-gradient {
     position: relative;
     height: 100%;
+    width: max-content;
 }
 
 .image-gradient:after {
@@ -160,6 +217,24 @@ section h1 {
     position: absolute;
     bottom: 10px;
     right: 10px;
+}
+
+/***************************
+  FORM STYLING
+***************************/
+
+#saved > p {
+    margin-left: 5rem;
+    padding-bottom: 1.25rem;
+}
+
+#saved-posts p {
+    margin: auto;
+    opacity: 0.5;
+}
+
+#saved .section-title {
+    padding-bottom: 0;
 }
 
 /***************************
@@ -243,3 +318,17 @@ section h1 {
         transform: translateX(0);
     }
 }
+
+  
+@keyframes ripple {
+    from {
+        opacity: 1;
+        transform: scale(0);
+    }
+    to {
+        opacity: 0;
+        transform: scale(10);
+    }
+}
+  
+  
