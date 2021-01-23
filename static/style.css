@@ -67,11 +67,17 @@ section h1 {
 #landing #left-title {
     margin-right: -1rem;
     animation: slide-right 0.75s ease-in-out 0.75s forwards;
+    -moz-animation: slide-right 0.75s ease-in-out 0.75s forwards;
+    -webkit-animation: slide-right 0.75s ease-in-out 0.75s forwards;
+    -o-animation: slide-right 0.75s ease-in-out 0.75s forwards;
 }
 
 #landing #right-title {
     margin-left: -1rem;
     animation: slide-left 0.75s ease-in-out 0.75s forwards;
+    -moz-animation: slide-left 0.75s ease-in-out 0.75s forwards;
+    -webkit-animation: slide-left 0.75s ease-in-out 0.75s forwards;
+    -o-animation: slide-left 0.75s ease-in-out 0.75s forwards;
 }
 
 #landing em {
@@ -148,10 +154,11 @@ section h1 {
   FORM STYLING
 ***************************/
 .add-container {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     position: fixed;
+    z-index: 1;
     width: 100vw;
     height: 100vh;
     background-color: rgba(0,0,0,0.5);
@@ -173,7 +180,7 @@ section h1 {
 @keyframes slide-right {
     0% {
        opacity: 0;
-       transform: translateX(-15px); 
+       transform: translateX(-30px); 
     }
     100% {
         opacity: 1;
@@ -184,7 +191,7 @@ section h1 {
 @keyframes slide-left {
     0% {
        opacity: 0;
-       transform: translateX(15px); 
+       transform: translateX(30px); 
     }
     100% {
         opacity: 1;
