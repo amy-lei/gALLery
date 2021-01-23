@@ -1,5 +1,8 @@
 from pymongo import MongoClient
-from secrets_ import MONGO_URI
+from secrets_ import MONGO_URI, DEVELOPER_KEY
+from googleapiclient.discovery import build
+YOUTUBE_API_SERVICE_NAME = 'youtube'
+YOUTUBE_API_VERSION = 'v3'
 
 def insert_show(username, title, link, client=MongoClient(MONGO_URI)):
     show = client.gallery.show
@@ -10,3 +13,7 @@ def insert_show(username, title, link, client=MongoClient(MONGO_URI)):
     }
     show.insert_one(show_info)
     return 'successfully inserted ' + str(show_info) + ' into db'
+
+def get_thumbnail(link):
+    youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
+
