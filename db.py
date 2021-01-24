@@ -24,6 +24,8 @@ def insert_show(username, title, link, tags, client=MongoClient(MONGO_URI)):
     show.insert_one(show_info)
     return 'successfully inserted ' + str(show_info) + ' into db'
 
+# MUSIC HANDLING --------------------------------------------
+
 def insert_music(username, vid_link, tags=None, client=MongoClient(MONGO_URI)):
     if tags is None:
         thumbnail, title, tags = get_vid_info(get_vid_id(vid_link))
@@ -61,6 +63,21 @@ def get_vid_id(vid_link):
 def get_track_info(spotify_id):
     t = sp.track(spotify_id)
     return t['album']['images'][0]['url'], t['album']['name']
+
+# END MUSIC HANDLING ------------------------------------------------------------
+
+def insert_hobby(username, title, quote, tags, client=MongoClient(MONGO_URI)):
+    tags = [item.strip().replace(' ', '-') for item in tags.split(',')]
+    hobby = client.gallery.hobby
+    show_info = {
+        'username' : username,
+        'title' : title,
+        'quote' : quote,
+        'tags' : tags,
+        'likes' : 0,
+    }
+    hobby.insert_one(hobby_info)
+    return 'successfully inserted ' + str(hobby_info) + ' into db'
 
 def insert_like(title, client=MongoClient(MONGO_URI)):
     show = client.gallery.show

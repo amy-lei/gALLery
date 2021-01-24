@@ -48,6 +48,19 @@ def add_music():
     elif request.method == 'GET':
         return jsonify({'all_music': []}), 200
 
+@app.route('/api/hobbies', methods=['POST', 'GET'])
+def add_hobby():
+    if request.method == 'POST':
+        body = request.json
+        username = body.get('username', '')
+        title = body.get('title', '')
+        quote = body.get('quote', '')
+        tags = body.get('tags', None)
+        print(insert_hobby(username, title, quote, tags))
+        return jsonify(body), 201
+    elif request.method == 'GET':
+        return jsonify({'all_hobbies': []}), 200
+
 @app.route('/api/add-like', methods=['POST', 'GET'])
 def add_like():
     if request.method == 'POST':
