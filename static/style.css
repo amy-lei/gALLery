@@ -300,9 +300,10 @@ section h1 {
     height: 60%;
     bottom: 70px;
     right: 45px;
-    background-color: white;
+    background-color: #d1bfad;
     border-radius: 10px 10px 0 10px;
     padding: 2.5rem;
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .add-form::after {
@@ -324,6 +325,36 @@ section h1 {
 #body-shows {
     display: block;
 }
+
+input[type=text] {
+  border: none;
+  background-color: #d1bfad;
+  border-bottom: 1px solid #3d3d3d;
+} 
+
+.radio-group {
+  margin: 10px;
+}
+
+.radio-group input[type=radio] {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+} 
+
+.radio-group label {
+  background-color: #3d3d3d;
+  padding: 10px 10px;
+}
+
+.radio-group label:hover {
+  background-color: #aaaaaa;
+  cursor: pointer
+}
+
+.radio-group input[type=radio]:checked+label {
+  background-color: #ffffff;
+} 
 
 /***************************
   ANIMATIONS
