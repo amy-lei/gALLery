@@ -22,7 +22,7 @@ def index():
     posts = {
         "shows": list(jsonify_list(shows, 'shows')),
         "music": list(jsonify_list(music, 'music')),
-        "hobby": list(jsonify_list(hobby, 'hobby'))
+        "hobbies": list(jsonify_list(hobby, 'hobbies'))
     }
     return render_template('gallery.html', posts=posts)
 
