@@ -40,15 +40,9 @@ button {
     border: none;
     margin: 0;
     padding: 0;
-    width: auto;
-    overflow: visible;
     outline: none;
-
     background: transparent;
-
-    /* inherit font & color from ancestor */
-    color: inherit;
-    font: inherit;
+    overflow: hidden;
 }
 
 /***************************
@@ -179,7 +173,7 @@ section h1 {
     cursor: pointer;
 }
 
-.post::after {
+button::after {
     display: none;
     content: "";
     position: absolute;
@@ -194,6 +188,7 @@ section h1 {
     /* Center the ripple */
     top: 50%;
     left: 50%;
+    
   
     animation: ripple 1s;
     -moz-animation: ripple 1s;
@@ -202,7 +197,7 @@ section h1 {
     opacity: 0;
 }
 
-.post:focus:not(:active)::after {
+button:focus:not(:active)::after {
     display: block;
 }
 
@@ -220,7 +215,7 @@ section h1 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0 3rem;
+    padding: 0 2.5rem;
     opacity: 0;
     transition: opacity 0.2s ease-in-out;
 }
@@ -233,10 +228,32 @@ section h1 {
     margin-bottom: 0.25rem;
 }
 
-.tags > .tag {
+.bookmark{
+    position: relative;
+}
+
+.post-info .icon-tabler-bookmark {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tag {
     display: inline;
-    margin: 0 2px;
+    margin: 0 2px 0.5rem 2px;
     opacity: 0.5;
+    color: white;
+    border: 0.5px solid white;
+    padding: 5px 10px;
+    border-radius: 10rem;
+    cursor: pointer;
 }
 
 .image-gradient {
@@ -291,6 +308,9 @@ section h1 {
   FORM STYLING
 ***************************/
 .open-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: fixed;
     bottom: 25px;
     right: 25px;  
@@ -298,6 +318,7 @@ section h1 {
     outline: none;
     border: none;
     cursor: pointer;
+    border-radius: 100rem;
 }
 
 .add-container {

@@ -73,7 +73,6 @@ const hideUntaggedPosts = (type_, tag) => {
     for (i = 0; i < docs.length; i++) {
         docs[i].style.display = "block";
     }
-    document.getElementByID('saved-posts').style.display;
 }
 
 // Send new post to the backend
@@ -135,6 +134,20 @@ const addMusic = async (username, tags) => {
 
 // Create DOM element for posts clicked on
 const savePost = (post) => {
+    // Try to retrive svg node through the event target
+    const src = window.event.target;
+    let svgElement;
+    if (src.tagName === 'path') {
+        svgElement = src.parentElement;
+    } else if (src.tagName === 'BUTTON'){
+        svgElement = src.firstElementChild;
+    }
+    // If successful, toggle fill-opacity of bookmark of saved post
+    if (svgElement?.tagName === 'svg') {
+        svgElement.setAttribute('fill-opacity', '1');
+    }
+    
+
     const container = document.getElementById('saved-posts');
     
     const firstChild = container.firstElementChild;
