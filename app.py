@@ -59,6 +59,17 @@ def add_like():
     elif request.method == 'GET':
         return jsonify({'likes': []}), 200
 
+@app.route('/api/remove-like', methods=['POST', 'GET'])
+def subtract_like():
+    if request.method == 'POST':
+        body = request.json
+        # for now we assume all posts have a unique title
+        title = body.get('title', '')
+        print(remove_like(title))
+        return jsonify(body), 201
+    elif request.method == 'GET':
+        return jsonify({'likes': []}), 200
+
 @app.route('/clear-shows')
 def clear_shows():
     print('clearing shows...')

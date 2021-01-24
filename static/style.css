@@ -243,13 +243,16 @@ button:focus:not(:active)::after {
     position: absolute;
     top: 8px;
     left: 10px;
+    width: 100px;
     font-size: 30px
 }
 
+.like-count {
+    position: relative;
+}
+
 .post-info .icon-tabler-heart{
-    position: absolute;
-    top: 2px;
-    /*left: 20px;*/
+    position: relative;
     cursor: pointer;
     transition: all 0.1s ease-in-out;
 }

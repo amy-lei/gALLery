@@ -215,35 +215,57 @@ const addMusic = async (username, tags) => {
     }
 };
 
-const likePost = (post) => {
+const toggleLikePost = (post) => {
     // Try to retrive svg node through the event target
     const src = window.event.target;
     let svgElement;
+    let count;
     if (src.tagName === 'path') {
         svgElement = src.parentElement;
+        count = src.parentElement.parentElement.parentElement.firstElementChild
     } else if (src.tagName === 'BUTTON'){
         svgElement = src.firstElementChild;
-    }
-    // If successful, toggle fill-opacity of bookmark of saved post
-    if (svgElement?.tagName === 'svg') {
-        svgElement.setAttribute('fill-opacity', '1');
-        svgElement.setAttribute('fill', '#d8657a');
-        svgElement.setAttribute('stroke', '#d8657a');
     }
 
     const body = {'title' : post.title}
 
-    // Send request
-    try {
-        const res = fetch('/api/add-like', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', },
-            body: JSON.stringify(body),
-        });
-        // TODO: Add it in as a new item
-    } catch (err) {
-        console.log(err);
+    // If successful, toggle fill-opacity of bookmark of saved post
+    if (svgElement?.tagName === 'svg') {
+        if (svgElement.getAttribute('fill-opacity') == '0') {
+            svgElement.setAttribute('fill-opacity', '1');
+            svgElement.setAttribute('fill', '#d8657a');
+            svgElement.setAttribute('stroke', '#d8657a');
+            count.innerText = (Number(count.innerText) + 1).toString()
+            // Send request
+            try {
+                const res = fetch('/api/add-like', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', },
+                    body: JSON.stringify(body),
+                });
+                // TODO: Add it in as a new item
+            } catch (err) {
+                console.log(err);
+            }
+        } else {
+            svgElement.setAttribute('fill-opacity', '0');
+            svgElement.setAttribute('fill', '#ffffff');
+            svgElement.setAttribute('stroke', '#ffffff');
+            count.innerText = (Number(count.innerText) - 1).toString()
+            // Send request
+            try {
+                const res = fetch('/api/remove-like', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', },
+                    body: JSON.stringify(body),
+                });
+                // TODO: Add it in as a new item
+            } catch (err) {
+                console.log(err);
+            }
+        }
     }
+
 }
 
 // Create DOM element for posts clicked on

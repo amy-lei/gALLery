@@ -68,3 +68,10 @@ def insert_like(title, client=MongoClient(MONGO_URI)):
     sr = show.update_one({'title' : title}, {'$inc' : {'likes' : 1}})
     mr = music.update_one({'title' : title}, {'$inc' : {'likes' : 1}})
     return "added a like to " + str(sr.modified_count) + " shows and " + str(mr.modified_count) + " musics"
+
+def remove_like(title, client=MongoClient(MONGO_URI)):
+    show = client.gallery.show
+    music = client.gallery.music
+    sr = show.update_one({'title' : title}, {'$inc' : {'likes' : -1}})
+    mr = music.update_one({'title' : title}, {'$inc' : {'likes' : -1}})
+    return "removed a like from " + str(sr.modified_count) + " shows and " + str(mr.modified_count) + " musics"
