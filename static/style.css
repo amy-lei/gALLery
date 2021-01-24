@@ -178,6 +178,9 @@ section h1 {
     left: 50%;
   
     animation: ripple 1s;
+    -moz-animation: ripple 1s;
+    -o-animation: ripple 1s;
+    -webkit-animation: ripple 1s;
     opacity: 0;
 }
 
