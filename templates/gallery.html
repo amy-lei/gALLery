@@ -19,6 +19,12 @@
     {% for type, items in posts.items() %}
         <section id="{{ type }}-section">
             <h1 class="section-title">{{ type.upper() }}</h1>
+            <div class="filters-container">
+                <h4>Filter by:</h4>
+                <div class="filters" id="{{type}}-filters">
+                    <p>Click on a tag to filter posts.</p>
+                </div>
+            </div>
             {{ carousel(type, items) }}
         </section>
     {% endfor %}
