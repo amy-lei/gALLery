@@ -15,8 +15,8 @@ def jsonify_list(data, type_):
 
 @app.route('/')
 def index():
-    shows = client.gallery.show.find({})
-    music = client.gallery.music.find({})
+    shows = client.gallery.show.find({}).sort('likes', -1)
+    music = client.gallery.music.find({}).sort('likes', -1)
     posts = {
         "shows": list(jsonify_list(shows, 'shows')),
         "music": list(jsonify_list(music, 'music')),
