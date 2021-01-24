@@ -240,6 +240,21 @@ button:focus:not(:active)::after {
     transition: all 0.1s ease-in-out;
 }
 
+.num-likes {
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    font-size: 30px
+}
+
+.post-info .icon-tabler-heart{
+    position: absolute;
+    top: 2px;
+    /*left: 20px;*/
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+}
+
 .tags {
     display: flex;
     flex-wrap: wrap;

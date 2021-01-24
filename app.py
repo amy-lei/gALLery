@@ -48,6 +48,17 @@ def add_music():
     elif request.method == 'GET':
         return jsonify({'all_music': []}), 200
 
+@app.route('/api/add-like', methods=['POST', 'GET'])
+def add_like():
+    if request.method == 'POST':
+        body = request.json
+        # for now we assume all posts have a unique title
+        title = body.get('title', '')
+        print(insert_like(title))
+        return jsonify(body), 201
+    elif request.method == 'GET':
+        return jsonify({'likes': []}), 200
+
 @app.route('/clear-shows')
 def clear_shows():
     print('clearing shows...')

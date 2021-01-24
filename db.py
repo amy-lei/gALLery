@@ -18,7 +18,8 @@ def insert_show(username, title, link, tags, client=MongoClient(MONGO_URI)):
         'username' : username,
         'title' : title,
         'link' : link,
-        'tags' : tags
+        'tags' : tags,
+        'likes' : 0,
     }
     show.insert_one(show_info)
     return 'successfully inserted ' + str(show_info) + ' into db'
@@ -35,7 +36,8 @@ def insert_music(username, vid_link, tags=None, client=MongoClient(MONGO_URI)):
         'username' : username,
         'title' : title,
         'link' : thumbnail,
-        'tags' : tags
+        'tags' : tags,
+        'likes' : 0,
     }
     music.insert_one(music_info)
     return 'successfully inserted ' + str(music_info) + ' into db'
@@ -60,3 +62,9 @@ def get_track_info(spotify_id):
     t = sp.track(spotify_id)
     return t['album']['images'][0]['url'], t['album']['name']
 
+def insert_like(title, client=MongoClient(MONGO_URI)):
+    show = client.gallery.show
+    music = client.gallery.music
+    sr = show.update_one({'title' : title}, {'$inc' : {'likes' : 1}})
+    mr = music.update_one({'title' : title}, {'$inc' : {'likes' : 1}})
+    return "added a like to " + str(sr.modified_count) + " shows and " + str(mr.modified_count) + " musics"

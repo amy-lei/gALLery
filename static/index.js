@@ -132,6 +132,37 @@ const addMusic = async (username, tags) => {
     }
 };
 
+const likePost = (post) => {
+    // Try to retrive svg node through the event target
+    const src = window.event.target;
+    let svgElement;
+    if (src.tagName === 'path') {
+        svgElement = src.parentElement;
+    } else if (src.tagName === 'BUTTON'){
+        svgElement = src.firstElementChild;
+    }
+    // If successful, toggle fill-opacity of bookmark of saved post
+    if (svgElement?.tagName === 'svg') {
+        svgElement.setAttribute('fill-opacity', '1');
+        svgElement.setAttribute('fill', '#d8657a');
+        svgElement.setAttribute('stroke', '#d8657a');
+    }
+
+    const body = {'title' : post.title}
+
+    // Send request
+    try {
+        const res = fetch('/api/add-like', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', },
+            body: JSON.stringify(body),
+        });
+        // TODO: Add it in as a new item
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 // Create DOM element for posts clicked on
 const savePost = (post) => {
     // Try to retrive svg node through the event target
@@ -147,7 +178,6 @@ const savePost = (post) => {
         svgElement.setAttribute('fill-opacity', '1');
     }
     
-
     const container = document.getElementById('saved-posts');
     
     const firstChild = container.firstElementChild;
