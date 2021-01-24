@@ -12,7 +12,7 @@ YOUTUBE_API_SERVICE_NAME = 'youtube'
 YOUTUBE_API_VERSION = 'v3'
 
 def insert_show(username, title, link, tags, client=MongoClient(MONGO_URI)):
-    tags = [item.strip() for item in tags.split(',')]
+    tags = [item.strip().replace(' ', '-') for item in tags.split(',')]
     show = client.gallery.show
     show_info = {
         'username' : username,
@@ -27,8 +27,9 @@ def insert_music(username, vid_link, tags=None, client=MongoClient(MONGO_URI)):
     if tags is None:
         thumbnail, title, tags = get_vid_info(get_vid_id(vid_link))
     else:
-        tags = [item.strip() for item in tags.split(',')]
+        tags = tags.split(',')
         thumbnail, title = get_track_info(vid_link)
+    tags = [item.strip().replace(' ', '-') for item in tags]
     music = client.gallery.music
     music_info = {
         'username' : username,

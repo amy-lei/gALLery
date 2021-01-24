@@ -13,7 +13,7 @@ SHOW_DATA = [
         "username": "staries",
         "title": "Hannibal",
         "link": "https://i.pinimg.com/originals/ff/2b/25/ff2b255df0e94d2cdeae6829879e0c75.jpg",
-        "tags" : ["psychological thriller", "thriller", "horror"]
+        "tags" : ["psychological-thriller", "thriller", "horror"]
     },
     {
         "username": "hedgehog",
@@ -31,7 +31,7 @@ SHOW_DATA = [
         "username": "cool-dinosaur",
         "title": "Squarepants",
         "link": "https://nick.mtvnimages.com/uri/mgid:arc:content:nick.com:9cd2df6e-63c7-43da-8bde-8d77af9169c7?quality=0.7",
-        "tags" : ["comedy", "slapstick", "surreal humor"]
+        "tags" : ["comedy", "slapstick", "surreal-humor"]
     },
     {
         "username": "sara",
