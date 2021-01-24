@@ -354,16 +354,48 @@ const savePost = (post) => {
     const username = document.createElement('P');
     username.classList.add('post-uploader');
     username.innerText = post.username;
+    
+    // Create the post info :( (if only this was react)
+    const infoContainer = document.createElement('div');
+    infoContainer.classList.add('post-info');
+    if (post.title) {
+        const title = document.createElement('H3');
+        title.innerText = post.title;
+        infoContainer.appendChild(title);
+    }
+    if (post.quote) {
+        const quote = document.createElement('P');
+        quote.innerText = post.quote;
+        infoContainer.appendChild(quote);
+    }
+    if (post.tags) {
+        const tagContainer = document.createElement('div');
+        tagContainer.classList.add('tags');
+        post.tags.forEach(tag => {
+            let tagEl = document.createElement('p');
+            tagEl.classList.add('tag');
+            tagEl.innerText = tag;
+            tagContainer.appendChild(tagEl);
+        });
+        infoContainer.appendChild(tagContainer);
+    }
+    newPost.appendChild(infoContainer);
 
-    const imageContainer = document.createElement('DIV');
-    imageContainer.classList.add('image-gradient');
-    
-    const image = document.createElement('IMG');
-    image.setAttribute('src', post.link);
-    
-    imageContainer.appendChild(image);
-    newPost.appendChild(username);
-    newPost.appendChild(imageContainer);
+    // Add image if relevant
+    if (post.link) {
+        const imageContainer = document.createElement('DIV');
+        imageContainer.classList.add('image-gradient');
+        
+        const image = document.createElement('IMG');
+        image.setAttribute('src', post.link);
+        
+        imageContainer.appendChild(image);
+        newPost.appendChild(username);
+        newPost.appendChild(imageContainer);
+    };
+
+
+
 
     // Add to list of saved posts
     container.appendChild(newPost);
