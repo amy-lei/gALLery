@@ -73,6 +73,7 @@ const hideUntaggedPosts = (type_, tag) => {
     for (i = 0; i < docs.length; i++) {
         docs[i].style.display = "block";
     }
+    document.getElementByID('saved-posts').style.display;
 }
 
 // Send new post to the backend
