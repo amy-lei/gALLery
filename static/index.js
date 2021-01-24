@@ -54,22 +54,36 @@ const showTags = () => {
 const showFormBody = (type) => {
     const showForm = document.getElementById('body-shows');
     const musicForm = document.getElementById('body-music');
+    const hobbyForm = document.getElementById('body-hobby');
     const showRadio = document.getElementById('shows-radio');
     const musicRadio = document.getElementById('music-radio');
+    const hobbyRadio = document.getElementById('hobby-radio');
 
     switch (type) {
         case 'shows':
-            showForm.style.display = 'block';
-            musicForm.style.display = 'none';
-            showRadio.checked = true;
-            musicRadio.checked = false;
-            break;
+                showForm.style.display = 'block';
+                musicForm.style.display = 'none';
+                hobbyForm.style.display = 'none';
+                showRadio.checked = true;
+                musicRadio.checked = false;
+                hobbyRadio.checked = false;
+                break;
             case 'music':
-            showForm.style.display = 'none';
-            musicForm.style.display = 'block';
-            showRadio.checked = false;
-            musicRadio.checked = true;
-            break;
+                showForm.style.display = 'none';
+                musicForm.style.display = 'block';
+                hobbyForm.style.display = 'none';
+                showRadio.checked = false;
+                musicRadio.checked = true;
+                hobbyRadio.checked = false;
+                break;
+            case 'hobby':
+                showForm.style.display = 'none';
+                musicForm.style.display = 'none';
+                hobbyForm.style.display = 'block';
+                showRadio.checked = false;
+                musicRadio.checked = false;
+                hobbyRadio.checked = true;
+                break;
         default:
             break;
     }
@@ -189,7 +203,9 @@ const addPost = async () => {
         } else {
             await addMusic(username, null);
         }
-    };
+    } else if (type === 'hobby') {
+        await addHobby(username);
+    }
 
     closeForm();
 }
@@ -229,6 +245,22 @@ const addMusic = async (username, tags) => {
     }
 };
 
+const addHobby = async (username) => {
+    const tags = document.getElementById('hobby-tag-input').value;
+    const title = document.getElementById('hobby-title-input').value;
+    const quote = document.getElementById('hobby-dec-input').value;
+    const body = { username, title, quote, tags};
+    try {
+        const res = await fetch('/api/hobby', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', },
+            body: JSON.stringify(body),
+        });
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 const toggleLikePost = (post) => {
     // Try to retrive svg node through the event target
     const src = window.event.target;
@@ -236,14 +268,15 @@ const toggleLikePost = (post) => {
     let count;
     if (src.tagName === 'path') {
         svgElement = src.parentElement;
-        count = src.parentElement.parentElement.parentElement.firstElementChild
+        count = src.parentElement.parentElement.previousElementSibling;
     } else if (src.tagName === 'BUTTON'){
         svgElement = src.firstElementChild;
+        count = src.previousElementSibling;
     }
 
     const body = {'title' : post.title}
 
-    // If successful, toggle fill-opacity of bookmark of saved post
+    // If successful, toggle fill-opacity of heart of saved post
     if (svgElement?.tagName === 'svg') {
         if (svgElement.getAttribute('fill-opacity') == '0') {
             svgElement.setAttribute('fill-opacity', '1');
@@ -275,7 +308,6 @@ const toggleLikePost = (post) => {
                     headers: { 'Content-Type': 'application/json', },
                     body: JSON.stringify(body),
                 });
-                // TODO: Add it in as a new item
             } catch (err) {
                 console.log(err);
             }

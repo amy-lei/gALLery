@@ -522,6 +522,12 @@ button:focus:not(:active)::after {
     filter: brightness(1.1);
 }
 
+.add-form button[type=submit]::after {
+    background-color: var(--landing-background-color);
+    opacity: 0.5;
+}
+
+
 /***************************
   ANIMATIONS
 ***************************/

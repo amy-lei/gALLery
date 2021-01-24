@@ -10,6 +10,9 @@
                 
                 <input type="radio" id="music-radio" name="category" value="music"/>
                 <label for="music" onclick="showFormBody('music')"> Music </label>
+                
+                <input type="radio" id="hobby-radio" name="category" value="music"/>
+                <label for="hobby" onclick="showFormBody('hobby')"> Hobby </label>
             </div>
         </div>
 
@@ -22,7 +25,7 @@
                 <label for="link">Image Link:</label><br>
                 <input type="text" id="show-link-input" name="link"><br>
 
-                <label for="tags">Show Tags:</label><br>
+                <label for="tags">Tags:</label><br>
                 <input type="text" id="show-tag-input" name="tag">
             </div>
             
@@ -31,9 +34,20 @@
                 <input type="text" id="music-link-input" name="link">
 
                 <div id="body-music-tags" class="form-body">
-                    <label for="tags">Music Tags:</label><br>
+                    <label for="tags">Tags:</label><br>
                     <input type="text" id="music-tag-input" name="tag">
                 </div>
+            </div>
+            
+            <div id="body-hobby" class="form-body">
+                <label for="link">Title:</label><br>
+                <input type="text" id="hobby-title-input" name="link">
+
+                <label for="link">Description:</label><br>
+                <input type="text" id="hobby-desc-input" name="quote">
+
+                <label for="tags">Tags:</label><br>
+                <input type="text" id="hobby-tag-input" name="tag">
             </div>
 
         </div>
