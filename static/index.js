@@ -235,6 +235,7 @@ const toggleLikePost = (post) => {
             svgElement.setAttribute('fill-opacity', '1');
             svgElement.setAttribute('fill', '#d8657a');
             svgElement.setAttribute('stroke', '#d8657a');
+            count.style.color = '#d8657a'
             count.innerText = (Number(count.innerText) + 1).toString()
             // Send request
             try {
@@ -252,6 +253,7 @@ const toggleLikePost = (post) => {
             svgElement.setAttribute('fill', '#ffffff');
             svgElement.setAttribute('stroke', '#ffffff');
             count.innerText = (Number(count.innerText) - 1).toString()
+            count.style.color = '#ffffff'
             // Send request
             try {
                 const res = fetch('/api/remove-like', {
@@ -281,6 +283,8 @@ const savePost = (post) => {
     // If successful, toggle fill-opacity of bookmark of saved post
     if (svgElement?.tagName === 'svg') {
         svgElement.setAttribute('fill-opacity', '1');
+        svgElement.setAttribute('fill', '#66c17a');
+        svgElement.setAttribute('stroke', '#66c17a');
     }
     
     const container = document.getElementById('saved-posts');
