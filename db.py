@@ -1,10 +1,19 @@
 from pymongo import MongoClient
-from secrets_ import MONGO_URI, DEVELOPER_KEY, CLIENT_ID, CLIENT_SECRET
+# from secrets_ import MONGO_URI, DEVELOPER_KEY, CLIENT_ID, CLIENT_SECRET
 from googleapiclient.discovery import build
 import pprint
 import json
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+CLIENT_ID = os.getenv('CLIENT_ID')
+MONGO_URI = os.getenv('MONGO_URI')
+DEVELOPER_KEY = os.getenv('DEVELOPER_KEY')
+CLIENT_SECRET = os.getenv('CLIENT_SECRET')
 
 sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=CLIENT_ID,
                                                        client_secret=CLIENT_SECRET))
