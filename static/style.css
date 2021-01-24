@@ -171,10 +171,6 @@ section h1 {
     overflow: hidden;
 }
 
-.post:not(.saved) {
-    cursor: pointer;
-}
-
 button::after {
     display: none;
     content: "";
@@ -234,6 +230,10 @@ button:focus:not(:active)::after {
     transition: all 0.1s ease-in-out;
 }
 
+.post-info .icon-tabler-bookmark:hover {
+    stroke: #66c17a;
+}
+
 .save-btn {
     position: absolute;
     top: 10px;
@@ -246,6 +246,10 @@ button:focus:not(:active)::after {
     left: 12px;
     display: flex;
     align-items: center;
+}
+
+.num-likes:hover .icon-tabler-heart {
+    stroke: #d8657a;
 }
 
 .like-count {
@@ -277,6 +281,11 @@ button:focus:not(:active)::after {
     padding: 5px 10px;
     border-radius: 10rem;
     cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+.filter:hover,
+.tag:hover {
+    background-color: #ffffff30;
 }
 
 .image-gradient {
@@ -521,6 +530,12 @@ button:focus:not(:active)::after {
 .add-form button[type=submit]:hover {
     filter: brightness(1.1);
 }
+
+.add-form button[type=submit]::after {
+    background-color: var(--landing-background-color);
+    opacity: 0.5;
+}
+
 
 /***************************
   ANIMATIONS
