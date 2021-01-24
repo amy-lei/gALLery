@@ -329,6 +329,8 @@ const savePost = (post) => {
         svgElement = src.parentElement;
     } else if (src.tagName === 'BUTTON'){
         svgElement = src.firstElementChild;
+    } else if (src.tagName === 'svg') {
+        svgElement = src;
     }
     // If successful, toggle fill-opacity of bookmark of saved post
     if (svgElement?.tagName === 'svg') {
