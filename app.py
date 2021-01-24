@@ -9,17 +9,20 @@ def jsonify_list(data, type_):
     Returns data as a jsonifiable object by removing objectId, adds tag conglomerate
     """
     ans = [{ k:v for k,v in datum.items() if k != "_id" } for datum in data]
-    for post in ans:
-        post['tag_conglomerate'] = ' '.join(post['tags']) + ' ' + type_
+    if 'tags' in ans[0]:
+        for post in ans:
+            post['tag_conglomerate'] = ' '.join(post['tags']) + ' ' + type_
     return ans
 
 @app.route('/')
 def index():
     shows = client.gallery.show.find({}).sort('likes', -1)
     music = client.gallery.music.find({}).sort('likes', -1)
+    hobby = client.gallery.hobby.find({}).sort('likes', -1)
     posts = {
         "shows": list(jsonify_list(shows, 'shows')),
         "music": list(jsonify_list(music, 'music')),
+        "hobby": list(jsonify_list(hobby, 'hobby'))
     }
     return render_template('gallery.html', posts=posts)
 
@@ -48,7 +51,7 @@ def add_music():
     elif request.method == 'GET':
         return jsonify({'all_music': []}), 200
 
-@app.route('/api/hobbies', methods=['POST', 'GET'])
+@app.route('/api/hobby', methods=['POST', 'GET'])
 def add_hobby():
     if request.method == 'POST':
         body = request.json
