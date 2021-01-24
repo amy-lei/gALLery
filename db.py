@@ -69,7 +69,7 @@ def get_track_info(spotify_id):
 def insert_hobby(username, title, quote, tags, client=MongoClient(MONGO_URI)):
     tags = [item.strip().replace(' ', '-') for item in tags.split(',')]
     hobby = client.gallery.hobby
-    show_info = {
+    hobby_info = {
         'username' : username,
         'title' : title,
         'quote' : quote,
