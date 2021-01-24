@@ -189,7 +189,11 @@ const hideUntaggedPosts = (type_, tag) => {
  */ 
 const addPost = async () => {
     // Determine the type post being added 
-    const type = document.getElementById('shows-radio').checked ? 'shows' : 'music';
+    const type = document.getElementById('shows-radio').checked 
+        ? 'shows' 
+        : document.getElementById('music-radio').checked
+            ? 'music'
+            : 'hobby';
     const isAnon = document.getElementById('anonymous').checked;
     const username = isAnon ? '' : document.getElementById('username-input').value;
 
@@ -248,7 +252,7 @@ const addMusic = async (username, tags) => {
 const addHobby = async (username) => {
     const tags = document.getElementById('hobby-tag-input').value;
     const title = document.getElementById('hobby-title-input').value;
-    const quote = document.getElementById('hobby-dec-input').value;
+    const quote = document.getElementById('hobby-desc-input').value;
     const body = { username, title, quote, tags};
     try {
         const res = await fetch('/api/hobby', {
