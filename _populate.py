@@ -14,14 +14,14 @@ SHOW_DATA = [
         "username": "staries",
         "title": "Hannibal",
         "link": "https://i.pinimg.com/originals/ff/2b/25/ff2b255df0e94d2cdeae6829879e0c75.jpg",
-        "likes": 0,
+        "likes": 1,
         "tags" : ["psychological-thriller", "thriller", "horror"]
     },
     {
         "username": "hedgehog",
         "title": "NARUTO",
         "link": "https://m.media-amazon.com/images/M/MV5BZmQ5NGFiNWEtMmMyMC00MDdiLTg4YjktOGY5Yzc2MDUxMTE1XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_UY1200_CR93,0,630,1200_AL_.jpg",
-        "likes": 0,
+        "likes": 3,
         "tags" : ["action", "adventure", "shounen"]
     },
     {
@@ -35,7 +35,7 @@ SHOW_DATA = [
         "username": "cool-dinosaur",
         "title": "Squarepants",
         "link": "https://nick.mtvnimages.com/uri/mgid:arc:content:nick.com:9cd2df6e-63c7-43da-8bde-8d77af9169c7?quality=0.7",
-        "likes": 0,
+        "likes": 5,
         "tags" : ["comedy", "slapstick", "surreal-humor"]
     },
     {
@@ -49,7 +49,7 @@ SHOW_DATA = [
         "username": "carl",
         "title": "She-ra And The Princesses of Power",
         "link": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG7wmAnLk2bxARcLvyu57X4jS5OvKtroNqYzsOtBLpmkquQuBc",
-        "likes": 0,
+        "likes": 1,
         "tags" : ["drama", "adventure", "action"]
     },
 ]
@@ -74,5 +74,5 @@ if __name__ == '__main__':
     insert_music('musical_tricycle', 'https://open.spotify.com/track/2cYALQZNXmuFGp2ecgpKMa', 'art pop, avant pop')
     insert_music('small_dinosaur', 'https://youtu.be/tdVAqxNLXiw')
     insert_music('tiny_bot', 'https://youtu.be/8UVNT4wvIGY')
-    insert_music('caracal', 'https://open.spotify.com/track/0NsMgzCzCuedQKqIWSOF34', 'rock, soft')
     insert_music('average_parrot','https://youtu.be/23xSJ19YW1I')
+    print('inserted 4 musics')

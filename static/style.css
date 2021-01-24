@@ -20,6 +20,9 @@
     --landing-background-color: #DDA448;
     --landing-font-color: #BB342F;
 
+    --hobby-background-color: #DDA448;
+    --hobby-font-color: #BB342F;
+
     --saved-background-color: #616163;
     --saved-font-color: #F7C59F;
 }
@@ -136,6 +139,11 @@ section h1 {
 #music-section {
     background-color: var(--music-background-color);
     color: var(--music-font-color);
+}
+
+#hobby-section {
+    background-color: var(--hobby-background-color);
+    color: var(--hobby-font-color);
 }
 
 #saved {
@@ -320,6 +328,17 @@ button:focus:not(:active)::after {
     position: absolute;
     bottom: 10px;
     right: 10px;
+}
+
+/**************************
+  HOBBY POST STYLING
+***************************/
+.post.hobby {
+    
+    background-color : #ffffff;
+    color: #000000;
+    width : 300px;
+
 }
 
 /***************************
