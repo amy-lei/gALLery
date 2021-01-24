@@ -188,7 +188,6 @@ button::after {
     /* Center the ripple */
     top: 50%;
     left: 50%;
-    
   
     animation: ripple 1s;
     -moz-animation: ripple 1s;
@@ -228,16 +227,15 @@ button:focus:not(:active)::after {
     margin-bottom: 0.25rem;
 }
 
-.bookmark{
-    position: relative;
+.post-info .icon-tabler-bookmark {
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
 }
 
-.post-info .icon-tabler-bookmark {
+.save-btn {
     position: absolute;
     top: 10px;
     right: 10px;
-    cursor: pointer;
-    transition: all 0.1s ease-in-out;
 }
 
 .tags {
@@ -246,6 +244,7 @@ button:focus:not(:active)::after {
 }
 
 .tag {
+    position: relative;
     display: inline;
     margin: 0 2px 0.5rem 2px;
     opacity: 0.5;
