@@ -48,7 +48,7 @@
         <h1 class="section-title">Before you go...</h1>
         <p> Check the posts you have saved!</p>
         <div id="saved-posts" class="posts">
-            <p>No posts were saved :( Look again?</p>
+            <p class="saved-posts-msg">No posts were saved :( Look again?</p>
         </div>
     </section>
 
@@ -67,7 +67,7 @@
 {% macro carousel(type, posts=[]) %}
 <div class="posts">
     {% for post in posts %}
-    <div class="post {{post.tag_conglomerate}}">
+    <div class="post {{post.tag_conglomerate}} color-{{range(5) | random}}">
             <p class="post-uploader">{{ post.username }}</p>
             <div class="post-info">
                 {% if post.title %}

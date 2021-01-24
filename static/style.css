@@ -22,8 +22,8 @@
 
     --hobby-background-color: #DDA448;
     --hobby-font-color: #BB342F;
-
-    --saved-background-color: #616163;
+    
+    --saved-background-color: #332E3C;
     --saved-font-color: #F7C59F;
 }
 
@@ -333,12 +333,54 @@ button:focus:not(:active)::after {
 /**************************
   HOBBY POST STYLING
 ***************************/
-.post.hobby {
-    
-    background-color : #ffffff;
-    color: #000000;
-    width : 300px;
+.post.hobbies {
+    color: white;
+    min-width : 300px;
+    border: 1px solid white;
+}
 
+.post.hobbies .post-info {
+    opacity: 1;
+    background-color: transparent;
+}
+
+.post.hobbies .post-info .tags {
+    margin-top: .5rem;
+}
+
+.post.hobbies.color-1 .post-info {
+    background-color: #D9594C40;
+}
+.post.hobbies.color-1 {
+    border: 2px solid #D9594C;
+}
+
+.post.hobbies.color-2 .post-info {
+    background-color: #007bd640;
+}
+.post.hobbies.color-2 {
+    border: 2px solid #007bd6;
+}
+
+.post.hobbies.color-3 .post-info {
+    background-color: #C3423F40;
+}
+.post.hobbies.color-3 {
+    border: 2px solid #C3423F;
+}
+
+.post.hobbies.color-4 .post-info {
+    background-color: #ff690040;
+}
+.post.hobbies.color-4 {
+    border: 2px solid #ff6900;
+}
+
+.post.hobbies.color-0 .post-info {
+    background-color: #4C3D6B40;
+}
+.post.hobbies.color-0 {
+    border: 2px solid #4C3D6B;
 }
 
 /***************************
@@ -350,13 +392,14 @@ button:focus:not(:active)::after {
     padding-bottom: 1.25rem;
 }
 
-#saved-posts p:not(.tag) {
+#saved-posts .saved-posts-msg {
     margin: auto;
     opacity: 0.5;
 }
 
 #saved-posts .tag {
     cursor: default;
+    font-size: 13.3px;
 }
 
 #saved-posts .tag:hover {

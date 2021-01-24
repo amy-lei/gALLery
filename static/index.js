@@ -352,6 +352,11 @@ const savePost = (post) => {
     const newPost = document.createElement('DIV');
     newPost.classList.add('post');
     newPost.classList.add('saved');
+
+    if (post.quote) {
+        newPost.classList.add('hobbies');
+        newPost.classList.add(`color-${Math.floor(Math.random() * 5)}`);
+    }
     
     const username = document.createElement('P');
     username.classList.add('post-uploader');
