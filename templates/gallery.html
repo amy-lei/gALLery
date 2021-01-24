@@ -15,7 +15,7 @@
     {% for type, items in posts.items() %}
         <section id="{{ type }}-section">
             <h1 class="section-title">{{ type.upper() }}</h1>
-            {{ carousel(items) }}
+            {{ carousel(type, items) }}
         </section>
     {% endfor %}
 
@@ -39,10 +39,10 @@
 {% endblock %}
 
 
-{% macro carousel(posts=[]) %}
+{% macro carousel(type, posts=[]) %}
 <div class="posts">
     {% for post in posts %}
-        <button class="post" onclick="savePost({{ post | safe }})">
+    <button class="post {{post.tag_conglomerate}}" onclick="savePost({{ post | safe }})">
             <p class="post-uploader">{{ post.username }}</p>
             <div class="post-info">
                 {% if post.title %}
@@ -51,7 +51,7 @@
                 {% if post.tags %}
                     <div class="tags">
                         {% for tag in post.tags %}
-                        <p class="tag">#{{ tag }}</p>
+                        <p class="tag" onclick="hideUntaggedPosts('{{type}}', '{{tag}}')">#{{ tag }}</p>
                         {% endfor %}
                     </div>
                 {% endif %}

@@ -3,7 +3,7 @@ window.addEventListener('scroll', () => {
 }, false);
 
 window.addEventListener('keyup', () => {
-    if (document.getElementById('music-link-input').value.includes('.spotify')) {
+    if (document.getElementById('music-link-input').value.includes('open.spotify')) {
         showTags()
     } else {
         hideTags()
@@ -58,6 +58,20 @@ const showFormBody = (type) => {
             break;
         default:
             break;
+    }
+}
+
+// Hide posts to filter by tag
+const hideUntaggedPosts = (type_, tag) => {
+    docs = document.getElementsByClassName('post ' + type_);
+    var i;
+    for (i = 0; i < docs.length; i++) {
+        docs[i].style.display = "none";
+    }
+    docs = document.getElementsByClassName('post ' + tag);
+    var i;
+    for (i = 0; i < docs.length; i++) {
+        docs[i].style.display = "block";
     }
 }
 

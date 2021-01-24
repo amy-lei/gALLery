@@ -4,17 +4,22 @@ from db import *
 app = Flask(__name__)
 client = MongoClient(MONGO_URI)
 
-def jsonify_list(data):
-    """Returns data as a jsonifiable object by removing objectId"""
-    return [{ k:v for k,v in datum.items() if k != "_id" } for datum in data]
+def jsonify_list(data, type_):
+    """
+    Returns data as a jsonifiable object by removing objectId, adds tag conglomerate
+    """
+    ans = [{ k:v for k,v in datum.items() if k != "_id" } for datum in data]
+    for post in ans:
+        post['tag_conglomerate'] = ' '.join(post['tags']) + ' ' + type_
+    return ans
 
 @app.route('/')
 def index():
     shows = client.gallery.show.find({})
     music = client.gallery.music.find({})
     posts = {
-        "shows": list(jsonify_list(shows)),
-        "music": list(jsonify_list(music)),
+        "shows": list(jsonify_list(shows, 'shows')),
+        "music": list(jsonify_list(music, 'music')),
     }
     return render_template('gallery.html', posts=posts)
 
