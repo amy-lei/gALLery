@@ -374,7 +374,7 @@ const savePost = (post) => {
         post.tags.forEach(tag => {
             let tagEl = document.createElement('p');
             tagEl.classList.add('tag');
-            tagEl.innerText = tag;
+            tagEl.innerText = `#${tag}`;
             tagContainer.appendChild(tagEl);
         });
         infoContainer.appendChild(tagContainer);
