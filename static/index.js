@@ -61,21 +61,105 @@ const showFormBody = (type) => {
     }
 }
 
-// Hide posts to filter by tag
-const hideUntaggedPosts = (type_, tag) => {
-    docs = document.getElementsByClassName('post ' + type_);
-    var i;
-    for (i = 0; i < docs.length; i++) {
-        docs[i].style.display = "none";
+/**
+ * Undo filter and readd posts
+ */
+const removeFilter = (self, type_, tag) => {
+    const relevantPosts = document.getElementsByClassName(`post ${type_}`);
+    const filterContainer = document.getElementById(`${type_}-filters`);
+    const filterNodes = filterContainer.children;
+
+    // If that was last standing filter, set all posts to 'block' and
+    // add back the filler text
+    if (filterNodes.length === 1) {
+        const filler = document.createElement('P');
+        filler.innerText = 'Click on tags to show similar posts.';
+        filterContainer.appendChild(filler);
+
+        for (let i = 0; i < relevantPosts.length; i++) {
+            relevantPosts[i].style.display = 'block';
+        }
+    } else {
+        // Otherwise accumulate the remaining tags and refilter based on
+        // OR relationship
+        const allFilters = new Set();
+        for (let i = 0; i < filterNodes.length; i++) {
+            let filter = filterNodes[i];
+            if (filter !== self) {
+                allFilters.add(filter.innerText.slice(1));
+            }
+        }
+        for (let i = 0; i < relevantPosts.length; i++) {
+            let post = relevantPosts[i];
+            // First hide it if it contained the unselected tag
+            if (post.classList.contains(tag)) {
+                post.style.display = 'none';
+            }
+            
+            // Then apply remaining filters to determine if it should be shown
+            for(let filter of allFilters) {
+                if (post.classList.contains(filter)) {
+                    console.log(filter, post, 'found');
+                    post.style.display = 'block';
+                    break;
+                }
+            }
+        }
     }
+    // Remove the filter
+    self.remove();
+}
+
+/**
+ * Hide posts to filter by tag
+ */ 
+const hideUntaggedPosts = (type_, tag) => {
+    const filterContainer = document.getElementById(`${type_}-filters`);
+    const firstChild = filterContainer.firstElementChild;
+
+    // If this is the first tag, get rid of the filler text
+    let firstTag = false;
+    if (firstChild?.tagName === 'P') {
+        firstChild.remove();
+        firstTag = true;
+    }
+
+    // Do nothing if it's already added
+    const filters = filterContainer.children;
+    for (let i = 0; i < filters.length; i++) {
+        let filter = filters[i];
+        if (filter.innerText.slice(1) === tag) {
+            return;
+        }
+    }
+
+    // If this was the first tag, hide all other posts first.
+    if (firstTag) {
+        docs = document.getElementsByClassName('post ' + type_);
+        var i;
+        for (i = 0; i < docs.length; i++) {
+            docs[i].style.display = 'none';
+        }
+    }
+    
+    // Add back posts with selected tag
     docs = document.getElementsByClassName('post ' + tag);
     var i;
     for (i = 0; i < docs.length; i++) {
         docs[i].style.display = "block";
     }
+
+    // Create new tag in the filters container
+    const filter = document.createElement('BUTTON');
+    filter.classList.add('filter');
+    filter.onclick = () => removeFilter(filter, type_, tag);
+    filter.innerText = `#${tag}`;
+    filterContainer.appendChild(filter);
 }
 
-// Send new post to the backend
+/**
+ * Send new post to the backend
+ */ 
 const addPost = async () => {
     // Determine the type post being added 
     const type = document.getElementById('shows-radio').checked ? 'shows' : 'music';
@@ -116,8 +200,7 @@ const addShow = async (username, tags) => {
 
 const addMusic = async (username, tags) => {
     const link = document.getElementById('music-link-input').value;
-    const body = { username, link, tags};
-    console.log(tags)
+    const body = { username, link, tags };
     
     // Send request
     try {

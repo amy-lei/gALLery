@@ -32,7 +32,8 @@ html {
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
     font-family: 'Francois One', sans-serif !important;
 }
 
@@ -188,7 +189,6 @@ button::after {
     /* Center the ripple */
     top: 50%;
     left: 50%;
-    
   
     animation: ripple 1s;
     -moz-animation: ripple 1s;
@@ -228,16 +228,15 @@ button:focus:not(:active)::after {
     margin-bottom: 0.25rem;
 }
 
-.bookmark{
-    position: relative;
+.post-info .icon-tabler-bookmark {
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
 }
 
-.post-info .icon-tabler-bookmark {
+.save-btn {
     position: absolute;
     top: 10px;
     right: 10px;
-    cursor: pointer;
-    transition: all 0.1s ease-in-out;
 }
 
 .num-likes {
@@ -260,7 +259,9 @@ button:focus:not(:active)::after {
     flex-wrap: wrap;
 }
 
+.filter,
 .tag {
+    position: relative;
     display: inline;
     margin: 0 2px 0.5rem 2px;
     opacity: 0.5;
@@ -302,7 +303,7 @@ button:focus:not(:active)::after {
 }
 
 /***************************
-  FORM STYLING
+  SAVED POSTS STYLING
 ***************************/
 
 #saved > p {
@@ -319,9 +320,37 @@ button:focus:not(:active)::after {
     padding-bottom: 0;
 }
 
+
+/***************************
+  FILTERS STYLING
+***************************/
+.filters-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    text-align: right;
+}
+
+.filters {
+    max-width: 50vw;
+    margin-top: 0.25rem;
+}
+
+.filters > p {
+    font-style: italic;
+    opacity: 0.5;
+    font-size: 14px;
+}
+
+.filter {
+    margin: 0 0 0.5rem 2px;
+}
+
+
 /***************************
   FORM STYLING
 ***************************/
+
 .open-btn {
     display: flex;
     justify-content: center;
@@ -334,6 +363,12 @@ button:focus:not(:active)::after {
     border: none;
     cursor: pointer;
     border-radius: 100rem;
+}
+.open-btn::after {
+    width: 5px;
+    height: 5px;
+    margin-top: -2.5px;
+    margin-left: -2.5px;
 }
 
 .add-container {
