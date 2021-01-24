@@ -1,28 +1,16 @@
 <div id="add-container" class="add-container">
     <div class="add-form">
-        <h2>Share what you're up to!</h2>
-        
-        {# Select category #}
-        <div id="category" class="radio-group">
-            <input type="radio" id="shows-radio" name="category" value="shows" onclick="showFormBody('shows')" checked/>
-            <label for="shows"> Shows </label>
+        <div>
+            <h2>Share what you're up to!</h2>
             
-            <input type="radio" id="music-radio" name="category" value="music" onclick="showFormBody('music')"/>
-            <label for="music"> Music </label>
-        </div>
-
-        {# Select whether to show username #}
-        <div id="mode" class="radio-group">
-            <input type="radio" name="mode" value="anonymous" onclick="hideUsername()" checked>
-            <label for="anonymous"> Anonymous </label>
-            
-            <input type="radio" name="mode" value="public" onclick="showUsername()">
-            <label for="public"> Add username </label>
-        </div>
-
-        <div id="user">
-            <label for="username">Username:</label><br>
-            <input type="text" id="username-input" name="username"><br>
+            {# Select category #}
+            <div id="category" class="radio-group">
+                <input type="radio" id="shows-radio" name="category" value="shows" checked/>
+                <label for="shows" onclick="showFormBody('shows')" > Shows </label>
+                
+                <input type="radio" id="music-radio" name="category" value="music"/>
+                <label for="music" onclick="showFormBody('music')"> Music </label>
+            </div>
         </div>
 
         {# Body of the form #}
@@ -50,6 +38,6 @@
 
         </div>
         <button type="submit" onclick="addPost()">Submit</button>
-        <button onclick="closeForm()"> Close </button>
+        <button class="close" onclick="closeForm()"> X </button>
     </div>
 </div>

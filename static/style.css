@@ -44,6 +44,7 @@ button {
     outline: none;
     background: transparent;
     overflow: hidden;
+    cursor: pointer;
 }
 
 /***************************
@@ -353,6 +354,35 @@ button:focus:not(:active)::after {
 /***************************
   FORM STYLING
 ***************************/
+#browse-status {
+    position: fixed;
+    z-index: 5;
+    bottom: 25px;
+    left: 25px;
+    color: white;
+}
+
+#browse-status .choices {
+    font-size: 14px;
+}
+
+#browse-status input[type=text] {
+    color: white;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #ffffff00;
+    transition: border 0.1s ease-in;
+}
+
+#browse-status input[type=text]::placeholder {
+    color: #ffffff75;
+}
+
+#browse-status input[type=text]:focus,
+#browse-status input[type=text]:hover {
+    border-bottom: 1px solid #ffffff50;
+}
 
 .open-btn {
     display: flex;
@@ -366,7 +396,12 @@ button:focus:not(:active)::after {
     border: none;
     cursor: pointer;
     border-radius: 100rem;
+    transition: filter 0.2s ease-in-out;
 }
+.open-btn:hover {
+    filter: brightness(0.9);
+}
+
 .open-btn::after {
     width: 5px;
     height: 5px;
@@ -387,26 +422,18 @@ button:focus:not(:active)::after {
 }
 
 .add-form {
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
     position: absolute;
-    width: 40%;
-    height: 60%;
-    bottom: 70px;
+    width: fit-content;
+    min-height: 400px;
+    bottom: 45px;
     right: 45px;
-    background-color: #d1bfad;
-    border-radius: 10px 10px 0 10px;
-    padding: 2.5rem;
+    background-color: white;
+    border-radius: 10px;
+    padding: 2rem;
     box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2);
-}
-
-.add-form::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    right: 0;
-    margin-left: -5px;
-    border-width: 10px;
-    border-style: solid;
-    border-color: white transparent transparent transparent;
 }
 
 #user,
@@ -418,35 +445,79 @@ button:focus:not(:active)::after {
     display: block;
 }
 
-input[type=text] {
-  border: none;
-  background-color: #d1bfad;
-  border-bottom: 1px solid #3d3d3d;
-} 
-
 .radio-group {
-  margin: 10px;
+    display: flex;
+    margin: 10px 10px 20px 10px;
 }
 
 .radio-group input[type=radio] {
-  opacity: 0;
-  position: fixed;
-  width: 0;
-} 
-
-.radio-group label {
-  background-color: #3d3d3d;
-  padding: 10px 10px;
+    display:none; 
+    margin:10px;
 }
 
-.radio-group label:hover {
-  background-color: #aaaaaa;
-  cursor: pointer
+.radio-group input[type=radio] + label {
+    flex-grow: 1;
+    text-align: center;
+    display:inline-block;
+    margin:-2px;
+    padding: 4px 12px;
+    background-color: #e7e7e7;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
 }
 
-.radio-group input[type=radio]:checked+label {
-  background-color: #ffffff;
-} 
+.radio-group label:first-of-type {
+    border-radius: 100px 0 0 100px;
+}
+.radio-group label:last-of-type {
+    border-radius: 0 100px 100px 0;
+}
+
+.radio-group input[type=radio]:checked + label { 
+    background-image: none;
+    background-color:var(--landing-background-color);
+}
+
+.radio-group input[type=radio]:not(:checked) + label:hover { 
+    background-color: #dfdfdf;
+}
+
+.form-body input[type=text] {
+    border: 1px solid transparent;
+    border-bottom-color: #d0d0d0;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+.form-body input[type=text]:focus,
+.form-body input[type=text]:active {
+    outline: none;
+}
+
+.add-form .close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    transition: all 0.2s ease-in-out;
+}
+
+.add-form .close:hover {
+    filter: brightness(1.5);
+}
+
+.add-form button[type=submit] {
+    position: relative;
+    border: 1px solid var(--landing-background-color);
+    border-radius: 10rem;
+    color: var(--landing-background-color);
+    padding: 0.5rem 1rem;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.add-form button[type=submit]:hover {
+    filter: brightness(1.1);
+}
 
 /***************************
   ANIMATIONS

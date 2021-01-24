@@ -3,6 +3,21 @@
 {% block title %} gALLery {% endblock %}
 
 {% block content %}
+    <div id="browse-status">
+        <h4>Browse as:</h4>
+        <div class="choices">
+            <div class="choice">
+                <input id="anonymous" type="radio" name="mode" value="Anonymous" checked/>
+                <label for="mode">Anonymous</label>
+
+            </div>
+            <div class="choice">
+                <input id="with-username" type="radio" name="mode" value="with-username"/>
+                <input id="username-input" type="text" name="username" placeholder="Username" onfocus="toggleUsername()"/>
+            </div>
+        </div>
+    </div>
+
     <section id="landing">
         <h1>
             <span id="left-title">G</span>
@@ -22,7 +37,7 @@
             <div class="filters-container">
                 <h4>Filter by:</h4>
                 <div class="filters" id="{{type}}-filters">
-                    <p>Click on a tag to filter posts.</p>
+                    <p>Click on tags to show similar posts.</p>
                 </div>
             </div>
             {{ carousel(type, items) }}

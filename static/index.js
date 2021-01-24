@@ -19,11 +19,17 @@ window.addEventListener('load', () => {
 
 // Toggle open/close form
 const openForm = () => {
-    document.getElementById(`add-container`).style.display = 'flex';
+    document.getElementById(`add-container`).style.display = 'block';
 }
 
 const closeForm = () => {
     document.getElementById(`add-container`).style.display = 'none';
+}
+
+const toggleUsername = () => {
+    // Check username radio button
+    document.getElementById('with-username').checked = true;
+    document.getElementById('anonymous').checked = false;
 }
 
 // Toggle username field
@@ -42,19 +48,27 @@ const showTags = () => {
     document.getElementById('body-music-tags').style.display = 'block';
 }
 
-// Toggle between which form content to show
+/**
+ * Toggle between which form content to show and update radio button
+ */ 
 const showFormBody = (type) => {
     const showForm = document.getElementById('body-shows');
     const musicForm = document.getElementById('body-music');
+    const showRadio = document.getElementById('shows-radio');
+    const musicRadio = document.getElementById('music-radio');
 
     switch (type) {
         case 'shows':
             showForm.style.display = 'block';
             musicForm.style.display = 'none';
+            showRadio.checked = true;
+            musicRadio.checked = false;
             break;
-        case 'music':
+            case 'music':
             showForm.style.display = 'none';
             musicForm.style.display = 'block';
+            showRadio.checked = false;
+            musicRadio.checked = true;
             break;
         default:
             break;
@@ -99,7 +113,6 @@ const removeFilter = (self, type_, tag) => {
             // Then apply remaining filters to determine if it should be shown
             for(let filter of allFilters) {
                 if (post.classList.contains(filter)) {
-                    console.log(filter, post, 'found');
                     post.style.display = 'block';
                     break;
                 }
@@ -163,7 +176,8 @@ const hideUntaggedPosts = (type_, tag) => {
 const addPost = async () => {
     // Determine the type post being added 
     const type = document.getElementById('shows-radio').checked ? 'shows' : 'music';
-    const username = document.getElementById('username-input').value;
+    const isAnon = document.getElementById('anonymous').checked;
+    const username = isAnon ? '' : document.getElementById('username-input').value;
 
     if (type === 'shows') {
         const tags = document.getElementById('show-tag-input').value;
