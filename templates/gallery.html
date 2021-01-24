@@ -10,6 +10,10 @@
             <span id="right-title" >ERY</span>
         </h1>
         <p>Check out what the rest of the world is up to!</p>
+        <div id="landing-illustrations">
+            <img src="{{ url_for('static', filename='left-illustration-large.svg') }}" alt="illustration of girl taking photo of art"/>
+            <img src="{{ url_for('static', filename='right-illustration-large.svg') }}" alt="illustration of girl listening to music"/>
+        </div>
     </section>
     
     {% for type, items in posts.items() %}
