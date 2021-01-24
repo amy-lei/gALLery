@@ -242,13 +242,16 @@ button:focus:not(:active)::after {
 
 .num-likes {
     position: absolute;
-    top: 8px;
-    left: 10px;
+    top: 10px;
+    left: 12px;
+    display: flex;
+    align-items: center;
 }
 
 .like-count {
     position: relative;
-    font-size: 30px;
+    font-size: 20px;
+    margin-right: 0.1rem;
     color: #ffffff
 }
 
